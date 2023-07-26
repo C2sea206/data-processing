@@ -118,7 +118,13 @@
           </div>
           <div>
             <label for="Note">Note</label><br />
-            <textarea name="Note" id="Note" placeholder="Note" rows="4" cols="40"></textarea>
+            <textarea
+              name="Note"
+              id="Note"
+              placeholder="Data Processing (JavaScript): There's a JavaScript code block responsible for processing form data when the page loads with query parameters. It retrieves the query string parameters (if any) from the URL and generates a dynamic output showing the selected items in the cart, total cost, and shipping information."
+              rows="4"
+              cols="40"
+            ></textarea>
           </div>
           <div>
             <input type="submit" />
@@ -154,24 +160,23 @@
         urlParams.forEach(function (value, key) {
           if (key == "Cart") {
             //alert("Value");
-            switch(value){
+            switch (value) {
               case "Widget":
                 myCart += `Widget: $3.99<br>`;
                 myTotal += 3.99;
-              break;
+                break;
+
               case "Sprocket":
                 myCart += `Sprocket: $5.99<br>`;
                 myTotal += 5.99;
-              break;
+                break;
+
               case "Thingy":
                 myCart += `Thingy: $1.99<br>`;
                 myTotal += 1.99;
-              break;
+                break;
             }
-
           } else {
-
-
             key = key.split("_").join(" ");
             //first last city title case only
 
@@ -183,17 +188,15 @@
                 value = titleCase(value);
                 break;
             }
+            myShipping += `<p>${key}: ${value}</p>`;
           }
-
-          myShipping += `<p>${key}: ${value}</p>`;
         });
 
         myCart = `<h3>Cart Totals</h3>
         <p>${myCart}</p>
         <p>Total: $${myTotal}</p>`;
 
-
-        myOutput += myCart + '<h3>Shipping Info</h3>'myShipping;
+        myOutput += myCart + "<h3>Shipping Info</h3>" + myShipping;
         myOutput += `<p><a href="index.html">CLEAR</a></p>`;
         myOutput += `</div>`;
         document.querySelector("#output").innerHTML = myOutput;
